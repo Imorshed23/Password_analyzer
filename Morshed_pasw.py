@@ -2,39 +2,44 @@ import re
 import string
 import secrets
 import hashlib
-
 # This function will check if the password is strong enough
 # Paramter: none
 # Return value: none
+print("Welcome to Password Analyzer 1.0")
+USER_PASSWORD = input("Please enter password: ")
 def password_strength_check():
-    user_password = input("Enter password: ")
     flag = 0
     while True:
-        if (len(user_password) < 8):
+        if (len(USER_PASSWORD) < 8):
             flag = -1
             break
-        elif not re.search("[a-z]", user_password):
+        elif not re.search("[a-z]", USER_PASSWORD):
             flag = -1
             break
-        elif not re.search("[A-Z]", user_password):
+        elif not re.search("[A-Z]", USER_PASSWORD):
             flag = -1
             break
-        elif not re.search("[0-9]", user_password):
+        elif not re.search("[0-9]", USER_PASSWORD):
             flag = -1
             break
-        elif not re.search("[_@$]", user_password):
+        elif not re.search("[_@$]", USER_PASSWORD):
             flag = -1
             break
-        elif re.search("\s", user_password):
+        elif re.search("\s", USER_PASSWORD):
             flag = -1
             break
         else:
             flag = 0
             print("Valid Password")
             break
-
     if flag == -1:
         print("Not a Valid Password")
+def file():
+    with open('libarypassw.txt', 'r') as f:
+        common = f.read().splitlines()
+    if USER_PASSWORD in common:
+        print("Password was in a common list.")
+
 #password_strength_check()
 # Function: This function will create a random password using ascii tool. It will contain letters, digits and punctuation
 # Paramter: the length is the only paramter in order to give the oprion to the user what kind of password they want
@@ -58,8 +63,8 @@ def options():
     return options()
 
 def main():
-    print("Welcome to password analyzer by ilia!")
     password_strength_check()
+    file()
     options()
 if __name__ == '__main__':
     main()
