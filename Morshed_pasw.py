@@ -68,7 +68,7 @@ def password_strength_check():
     #if USER_PASSWORD in common:
         #print("Password was in a common list.")
 def file():
-    if USER_PASSWORD in mySql_insert_query:
+    if USER_PASSWORD in records:
         print("found")
 
 #password_strength_check()
