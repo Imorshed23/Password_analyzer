@@ -4,14 +4,19 @@ import secrets
 import hashlib
 import mysql.connector
 from mysql.connector import Error
+
 try:
     connection = mysql.connector.connect(host='localhost',
                                          database='project',
                                          user='root',
                                          password='Morshed257')
-    mySql_insert_query = """INSERT INTO password (Passwords) 
-                               VALUES 
-                               (15) """
+    sql_select_Query = "select * from passw"
+    cursor = connection.cursor()
+    cursor.execute(sql_select_Query)
+    # get all records
+    records = cursor.fetchall()
+    print("Total number of rows in table: ", cursor.rowcount)
+
 
     if connection.is_connected():
         db_Info = connection.get_server_info()
